@@ -1,6 +1,6 @@
 # HAL — planificateur du foyer et coach sportif
 
-Une application iPhone et son serveur, conçus et développés seul, pour un foyer de deux personnes. Le serveur croise les emplois du temps de chacun, en déduit les moments libres, et y place tout seul les tâches de la maison et les séances de sport. HAL, un coach construit sur un modèle de langage, écrit les séances et les ajuste au fil des semaines.
+Une application iPhone et son serveur, conçus et développés seul, pour ma copine et moi. Le serveur croise les emplois du temps de chacun, en déduit les moments libres, et y place tout seul les tâches de la maison et les séances de sport. HAL, un coach construit sur un modèle de langage, écrit les séances et les ajuste au fil des semaines.
 
 Projet personnel, M1 MIAGE (Université de Lorraine). En usage réel au quotidien depuis l'été 2026.
 
@@ -22,11 +22,49 @@ Projet personnel, M1 MIAGE (Université de Lorraine). En usage réel au quotidie
 
 ---
 
-## Le problème
+## L'histoire du projet
 
-Nous sommes deux dans l'appartement. Mes cours changent chaque semaine, j'ai longtemps travaillé en horaires variables, et je pars régulièrement en train voir ma famille. Le ménage, les lessives et le sport passaient à la trappe. Pas par mauvaise volonté : les caser demande de croiser de tête plusieurs plannings qui bougent tout le temps.
+### Au départ : placer les tâches tout seul
 
-Le système fait ce croisement à notre place.
+Je voulais un système qui mette en place automatiquement les tâches de la maison pour ma copine et moi. Nos emplois du temps changent sans arrêt : mes cours bougent chaque semaine, je travaillais alors en horaires variables chez McDonald's, et je rentre souvent chez mes parents en train. Caser une lessive demandait de croiser plusieurs plannings de tête.
+
+Je suis parti sur une base simple : une API en Python, installée sur l'ancien ordinateur portable que m'avait offert la Région Grand Est, et pilotée depuis un bot Telegram. Je lui donnais nos calendriers au format ICS. Il triait les informations, croisait les emplois du temps, repérait les incohérences (deux cours au même moment, un cours publié en double) et posait les tâches dans les créneaux libres.
+
+Dès le début, j'ai construit la base de données avec la démarche apprise en L3 : chaque tâche a des règles strictes, et ces règles sont traduites en contraintes et en fonctions PL/pgSQL. C'est la base elle-même qui refuse ce qui n'a pas de sens, pas le code autour.
+
+### Petit à petit, de nouvelles fonctionnalités
+
+J'ai ajouté des fonctionnalités au fil des besoins : les absences, qui redistribuent les tâches quand l'un de nous part, puis la recherche de trains pour rentrer chez mes parents quand j'ai du temps libre. Certaines ont été abandonnées en route, comme la gestion de mes tenues de travail quand j'étais chez McDonald's.
+
+### Le tournant : l'IA
+
+Le gros changement est venu avec l'IA. Je reprenais le sport, et je demandais à Gemini de me préparer mes séances. C'est là que j'ai eu l'idée d'intégrer un coach IA directement dans le système.
+
+Il fallait alors une vraie application, capable de récupérer les données de ma montre et de Santé. Et comme la partie calendrier existait déjà, l'agent pouvait aussi lire mon emploi du temps.
+
+J'ai appris à construire un véritable agent IA, un coach sportif qui utilise toutes les informations à sa disposition pour me faire des programmes sur mesure. Pour moi, c'est le plus intéressant du projet : j'ai un problème physique qui m'empêche de faire certains mouvements, et le coach en tient compte pour bâtir un programme vraiment personnalisé.
+
+Je lui ai ensuite ouvert la gestion des tâches et des calendriers. L'IA est devenue le cœur de l'application.
+
+### Une application iPhone, personnalisable à l'infini
+
+Le choix de l'iPhone uniquement s'est fait naturellement : nous sommes tous les deux sur iPhone, et Apple rend la récupération des données de santé très simple. J'utilise les fonctionnalités de base de l'iPhone et j'ai suivi le design d'Apple, moderne et cohérent avec le reste du système.
+
+Je voulais une application 100 % personnalisable. Le style Liquid Glass d'iOS 26, en plus d'être moderne, permet de mettre un fond d'écran dans l'application, et donc de la personnaliser à l'infini. L'accueil est fait de widgets qu'on choisit et qu'on range, et on peut réutiliser les mêmes informations dans les widgets de l'écran d'accueil de l'iPhone.
+
+J'ai aussi ajouté MCP : grâce à ça, je peux piloter HAL en dehors de l'application, depuis une conversation avec Claude par exemple. C'est une piste que je veux encore explorer.
+
+### Deux testeurs, des idées tous les jours
+
+Pour l'instant, nous ne sommes que deux à l'utiliser, mais nous en parlons beaucoup : les bugs sont vite corrigés, et les idées arrivent sans arrêt. Un exemple : à la salle, je voulais profiter de la boisson disponible toutes les 20 minutes. Je me suis dit qu'il me fallait une fonctionnalité pour ça, et l'appli me prévient maintenant pendant la séance quand je peux recharger ma gourde.
+
+Au-delà de l'utilité au quotidien, c'est surtout un projet informatique que je mène de A à Z : la base de données, le serveur, l'IA, l'application, le déploiement. J'y apprends énormément.
+
+### La suite
+
+- Améliorer encore l'IA, pour qu'elle soit le meilleur coach possible.
+- Une liste de courses, avec une IA qui m'aide à faire mes courses en fonction des promotions.
+- Et beaucoup d'autres idées : c'est une application qui sert vraiment tous les jours.
 
 ---
 
