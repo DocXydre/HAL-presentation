@@ -66,6 +66,8 @@ Au-delà de l'utilité au quotidien, c'est surtout un projet informatique que je
 - Une liste de courses, avec une IA qui m'aide à faire mes courses en fonction des promotions.
 - Et beaucoup d'autres idées : c'est une application qui sert vraiment tous les jours.
 
+À terme, le but est d'ouvrir l'application à tout le monde. Elle peut servir à des étudiants, à des couples, à des colocations, ou simplement à des gens qui veulent se mettre au sport avec un coach qui les connaît. Je commence déjà à réfléchir à l'offre que je pourrais proposer, et aux personnes qu'elle intéresserait le plus.
+
 ---
 
 ## Ce que fait l'application
