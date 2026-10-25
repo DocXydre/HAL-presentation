@@ -10,9 +10,15 @@ Projet personnel, M1 MIAGE (Université de Lorraine). En usage réel au quotidie
 
 ## Captures
 
-| Aujourd'hui | Sport | Maison | HAL |
+| Aujourd'hui | Séance de musculation | Maison | HAL |
 |:---:|:---:|:---:|:---:|
-| ![Aujourd'hui](captures/aujourdhui.png) | ![Sport](captures/sport.png) | ![Maison](captures/maison.png) | ![HAL](captures/hal.png) |
+| ![Aujourd'hui](captures/aujourdhui.jpg) | ![Séance de musculation](captures/sport.jpg) | ![Maison](captures/maison.jpg) | ![HAL](captures/hal.jpg) |
+
+| Démarrage de HAL | Notifications | Live Activity | Widgets |
+|:---:|:---:|:---:|:---:|
+| ![Démarrage de HAL](captures/demarrage.jpg) | ![Notifications](captures/notifications.jpg) | ![Live Activity](captures/live-activity.jpg) | ![Widgets](captures/widgets.jpg) |
+
+*Captures prises sur une base de démonstration : les données sont inventées.*
 
 ---
 
