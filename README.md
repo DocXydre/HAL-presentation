@@ -1,6 +1,6 @@
-# HAL — planificateur du foyer et coach sportif
+# HAL : planificateur du foyer et coach sportif
 
-Une application iPhone et son serveur, conçus et développés seul, pour ma copine et moi. Le serveur croise les emplois du temps de chacun, en déduit les moments libres, et y place tout seul les tâches de la maison et les séances de sport. HAL, un coach construit sur un modèle de langage, écrit les séances et les ajuste au fil des semaines.
+Une application iPhone et son serveur, que je conçois et mène de A à Z, pour ma copine et moi. Le serveur croise les emplois du temps de chacun, en déduit les moments libres, et y place tout seul les tâches de la maison et les séances de sport. HAL, un coach construit sur un modèle de langage, écrit les séances et les ajuste au fil des semaines.
 
 Projet personnel, M1 MIAGE (Université de Lorraine). En usage réel au quotidien depuis l'été 2026.
 
@@ -42,7 +42,7 @@ Le gros changement est venu avec l'IA. Je reprenais le sport, et je demandais à
 
 Il fallait alors une vraie application, capable de récupérer les données de ma montre et de Santé. Et comme la partie calendrier existait déjà, l'agent pouvait aussi lire mon emploi du temps.
 
-J'ai appris à construire un véritable agent IA, un coach sportif qui utilise toutes les informations à sa disposition pour me faire des programmes sur mesure. Pour moi, c'est le plus intéressant du projet : j'ai un problème physique qui m'empêche de faire certains mouvements, et le coach en tient compte pour bâtir un programme vraiment personnalisé.
+J'ai appris à construire un véritable agent IA, un coach sportif qui utilise toutes les informations à sa disposition pour me faire des programmes sur mesure. Pour moi, c'est le plus intéressant du projet : le coach tient compte des mouvements que je ne peux pas faire pour bâtir un programme vraiment personnalisé.
 
 Je lui ai ensuite ouvert la gestion des tâches et des calendriers. L'IA est devenue le cœur de l'application.
 
@@ -59,6 +59,10 @@ J'ai aussi ajouté MCP : grâce à ça, je peux piloter HAL en dehors de l'appli
 Pour l'instant, nous ne sommes que deux à l'utiliser, mais nous en parlons beaucoup : les bugs sont vite corrigés, et les idées arrivent sans arrêt. Un exemple : à la salle, je voulais profiter de la boisson disponible toutes les 20 minutes. Je me suis dit qu'il me fallait une fonctionnalité pour ça, et l'appli me prévient maintenant pendant la séance quand je peux recharger ma gourde.
 
 Au-delà de l'utilité au quotidien, c'est surtout un projet informatique que je mène de A à Z : la base de données, le serveur, l'IA, l'application, le déploiement. J'y apprends énormément.
+
+### Dernière étape : GitLab
+
+Pour produire et améliorer l'application plus sereinement, je suis passé sur un GitLab auto-hébergé, que j'apprends à utiliser. Chaque changement passe maintenant par une merge request et une pipeline : le linter, toute la suite de tests sur une vraie base PostgreSQL, et la compilation de l'appli iPhone sur mon Mac, qui en sort aussi les captures d'écran. Rien n'est déployé tant que tout n'est pas vert.
 
 ### La suite
 
@@ -81,6 +85,18 @@ Au-delà de l'utilité au quotidien, c'est surtout un projet informatique que je
 - **Lieux et météo** : trajets calculés sur OpenStreetMap, rappels selon l'arrivée sur un lieu (sans garder de tracé), course déplacée si la météo est mauvaise.
 - **HAL en serveur MCP** : Claude Code, Claude Desktop ou Gemini CLI peuvent lire le planning et proposer des changements, qui attendent un accord donné dans l'appli.
 - **Côté iPhone** : interface Liquid Glass d'iOS 26, widgets, Live Activity pendant le repos entre deux séries, saisie hors ligne, notifications.
+
+---
+
+## Comment je mène le projet
+
+J'ai repris les méthodes vues en cours de conception de systèmes d'information, et je les applique comme sur un projet d'équipe.
+
+- **Un cahier des charges** qui décrit ce que l'application doit être. Chaque règle de gestion y porte un code stable, rangé par famille. Ces codes ne changent jamais et sont cités dans le code, ce qui permet de retrouver d'où vient chaque comportement.
+- **Un journal de bord** qui suit l'écart entre le cahier des charges et ce qui existe vraiment : ce qui reste à faire, ce qui est en cours, ce qui est fait, et pourquoi chaque décision a été prise.
+- **Un découpage en lots** classés par priorité. Chaque lot indique les règles qu'il touche, et les arbitrages sur ce qui entre ou non dans une version sont notés.
+- **Un circuit de validation** : une branche par lot, une merge request, une pipeline verte, puis le déploiement.
+- **Deux utilisateurs au quotidien**, qui remontent les bugs et les idées. Elles repassent par le cahier des charges avant d'être développées.
 
 ---
 
@@ -152,7 +168,8 @@ flowchart LR
 | **IA** | API Claude (Anthropic), boucle d'appel d'outils écrite à la main, serveur MCP, mémoire résumée chaque nuit |
 | **iPhone** | SwiftUI, HealthKit, WidgetKit, ActivityKit, WorkoutKit (Apple Watch), XcodeGen |
 | **Infra** | Docker Compose sur un portable de récupération sous Debian, accès par Tailscale sans port ouvert |
-| **Livraison** | Un `git push` déploie le serveur (sauvegarde, migrations, redémarrage, sonde de santé) et envoie l'appli sur TestFlight. Tests et linter à chaque push sur GitHub Actions |
+| **Qualité** | GitLab auto-hébergé : à chaque merge request, linter (ruff) et plus de 950 tests sur PostgreSQL 16 en trois jobs parallèles ; compilation de l'appli iPhone et captures d'écran sur un runner installé sur mon Mac |
+| **Livraison** | Une fusion sur `main` déploie le serveur (sauvegarde, migrations, redémarrage, sonde de santé) et envoie l'appli sur TestFlight. GitHub sert de miroir |
 
 ---
 
@@ -161,7 +178,6 @@ flowchart LR
 | | |
 |---|---|
 | Durée | depuis août 2026, en parallèle du master |
-| Code | environ 95 000 lignes : Python, SQL et Swift |
 | Base de données | 70 tables, 83 migrations versionnées |
 | Tests | plus de 950, sur une vraie base PostgreSQL |
 | Application | 90 fichiers Swift, 4 onglets, widgets et Live Activity |
@@ -186,9 +202,9 @@ flowchart LR
 
 ## Contact
 
-Je cherche un stage en développement. Pour voir le code ou en parler :
+Je suis en Master 1 MIAGE à l'IDMC (Nancy) et je cherche un stage en gestion et conception de projet, idéalement autour des nouveaux outils IA. Pour voir le code ou en parler :
 
-- LinkedIn : *à compléter*
-- Courriel : *à compléter*
+- LinkedIn : [linkedin.com/in/mathisthomas](https://www.linkedin.com/in/mathisthomas/)
+- Courriel : [tmathis.dev@gmail.com](mailto:tmathis.dev@gmail.com)
 
 © 2026 Thomas Mathis. Tous droits réservés.
